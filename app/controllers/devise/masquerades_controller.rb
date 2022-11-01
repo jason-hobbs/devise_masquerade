@@ -77,17 +77,17 @@ class Devise::MasqueradesController < DeviseController
   def find_owner_resource(masqueradable_resource)
     skey = session_key(masqueradable_resource, masquerading_guid)
 
-    if Devise.masquerade_storage_method_session?
-      resource_id = session[skey]
+    #if Devise.masquerade_storage_method_session?
+    #  resource_id = session[skey]
 
-      masquerading_resource_class.find(resource_id)
-    else
+    #  masquerading_resource_class.find(resource_id)
+    #else
       #data = Rails.cache.read(skey)
 
       #GlobalID::Locator.locate_signed(data, for: 'masquerade')
 
       GlobalID::Locator.locate_signed(Rails.cache.read(skey), for: 'masquerade')
-    end
+    #end
   end
 
   def go_back(user, path:)
