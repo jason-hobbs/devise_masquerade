@@ -82,9 +82,11 @@ class Devise::MasqueradesController < DeviseController
 
       masquerading_resource_class.find(resource_id)
     else
-      data = Rails.cache.read(skey)
+      #data = Rails.cache.read(skey)
 
-      GlobalID::Locator.locate_signed(data, for: 'masquerade')
+      #GlobalID::Locator.locate_signed(data, for: 'masquerade')
+
+      GlobalID::Locator.locate_signed(Rails.cache.read(skey), for: 'masquerade')
     end
   end
 
